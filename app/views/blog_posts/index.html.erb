@@ -1,0 +1,20 @@
+<h1>my blog</h1>
+
+<!-- 
+    <% 1 %> just runs and doesnt show on html
+    <%= 2 %> runs the ruby code and print it to html
+
+-->
+<!-- notice the lack of "=" on the array iteration, if you place '=' there it will print the entire array in the page instead -->
+<% @blog_posts.each do |blog_post| %>
+    <div>
+        <%# All of these redirect to the proper view %>
+        <%# blog_post_path(blog_post.id) %>
+        <%# blog_post_path(blog_post) %>
+        <%# blog_post %>
+        <h2><%=link_to blog_post.title, blog_post_path(blog_post.id)%></h2>
+        <%=blog_post.body%>
+    </div>
+<% end%>
+
+

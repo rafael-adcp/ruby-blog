@@ -9,6 +9,24 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
+
+
+  # needs to be first otherwise GET would attempt to search for id=new
+  get "/blog_posts/new", to: "blog_posts#new", as: :new_blog_post
+  post "/blog_posts", to: "blog_posts#create", as: :blog_posts
+
+  patch "/blog_posts/:id", to: "blog_posts#update"
+  get "/blog_posts/:id/edit", to: "blog_posts#edit", as: :edit_blog_post
+
+
+  # defining an alias to use on view href links
+  get "/blog_posts/:id", to: "blog_posts#show", as: :blog_post
+
+
+
+
+
+
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "blog_posts#index"
 end

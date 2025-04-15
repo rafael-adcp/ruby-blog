@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -10,17 +11,21 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
 
+  # MANUALY DECLARING ROUTES
+  # # needs to be first otherwise GET would attempt to search for id=new
+  # get "/blog_posts/new", to: "blog_posts#new", as: :new_blog_post
+  # post "/blog_posts", to: "blog_posts#create", as: :blog_posts
 
-  # needs to be first otherwise GET would attempt to search for id=new
-  get "/blog_posts/new", to: "blog_posts#new", as: :new_blog_post
-  post "/blog_posts", to: "blog_posts#create", as: :blog_posts
-
-  patch "/blog_posts/:id", to: "blog_posts#update"
-  get "/blog_posts/:id/edit", to: "blog_posts#edit", as: :edit_blog_post
+  # delete "/blog_posts/:id", to: "blog_posts#destroy"
+  # patch "/blog_posts/:id", to: "blog_posts#update"
+  # get "/blog_posts/:id/edit", to: "blog_posts#edit", as: :edit_blog_post
 
 
-  # defining an alias to use on view href links
-  get "/blog_posts/:id", to: "blog_posts#show", as: :blog_post
+  # # defining an alias to use on view href links
+  # get "/blog_posts/:id", to: "blog_posts#show", as: :blog_post
+
+  # this handles it all for us
+  resources :blog_posts
 
 
 

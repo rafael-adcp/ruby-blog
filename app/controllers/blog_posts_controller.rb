@@ -9,7 +9,11 @@ class BlogPostsController < ApplicationController
 
   def index
     # @ will share it with the views
-    @blog_posts = BlogPost.all
+    if user_signed_in?
+      @blog_posts = BlogPost.sorted
+    else
+      @blog_posts = BlogPost.published.sorted
+    end
   end
 
   def show
@@ -51,11 +55,16 @@ class BlogPostsController < ApplicationController
 
   private
   def blog_post_params
-    params.require(:blog_post).permit(:title, :body)
+    params.require(:blog_post).permit(:title, :body, :published_at)
   end
 
   def set_blog_post
-    @blog_post = BlogPost.find(params[:id])
+    if user_signed_in?
+      @blog_post = BlogPost.find(params[:id])
+    else
+      @blog_post = BlogPost.published.find(params[:id])
+    end
+
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end

@@ -2,7 +2,11 @@
 `rails generate` or `rails g` # to see available things
 
 # creating migration
-`rails generate model BlogPost title:string body:text`
+```
+rails generate model BlogPost title:string body:text
+
+rails generate migration AddPublishedAtToBlogPosts published_at:datetime
+```
 
 # populate db data
 rails db:seed
@@ -15,14 +19,13 @@ rails db:system:change --to=postgresql
 Supported preconfigurations are: mysql, trilogy, postgresql, sqlite3, mariadb-mysql, mariadb-trilogy.
 
 
-remember to
-  sudo apt install postgresql libpq-dev 
-then 
-  bundle install --gemfile /home/rprado_ubuntu/blog/Gemfile
-run it
-  sudo service postgresql start
-then
-  sudo -u postgres createuser -s rprado_ubuntu    
+remember to setup the database locally:
+```
+sudo apt install postgresql libpq-dev 
+bundle install --gemfile /home/rprado_ubuntu/blog/Gemfile
+sudo service postgresql start
+sudo -u postgres createuser -s rprado_ubuntu    
+```
 
 # where sqlite lives
 `wsl.localhost\Ubuntu-24.04\home\rprado_ubuntu\blog\storage`
@@ -48,6 +51,26 @@ bin/dev # server + css
 
 
 # Useful things
+
+# Syntax
+```
+blog(dev)> 
+blog(dev)> 1.year.ago
+=> 2024-04-16 14:36:43.467939500 UTC +00:00
+blog(dev)> 1.year.from_now
+=> 2026-04-16 14:36:47.688396600 UTC +00:00`
+```
+
+# Dealing with Time and Date
+In Rails, Time.now and Time.current are two different ways to get the current time. While they may seem similar, there's a subtle difference between them.
+
+Time.now returns the current time in the system's timezone, which is usually the timezone of the server. This means that if your server is running in a different timezone than your application's timezone, Time.now will return the wrong time.
+
+On the other hand, Time.current returns the current time in the application's timezone, which is set in the config/application.rb file or in the config/environments/*.rb files. This means that Time.current will always return the correct time, regardless of the server's timezone.
+
+In general, it's recommended to use Time.current instead of Time.now in Rails applications, especially when working with dates and times that need to be displayed to users in their local timezone.
+
+
 ## Debug wise
 `binding.irb` stops the code and allow for debugging inspection
 `continue`

@@ -10,6 +10,20 @@ rails db:seed
 # applying migration
 `rails db:migrate`
 
+# switching from default sqlit to something else
+rails db:system:change --to=postgresql
+Supported preconfigurations are: mysql, trilogy, postgresql, sqlite3, mariadb-mysql, mariadb-trilogy.
+
+
+remember to
+  sudo apt install postgresql libpq-dev 
+then 
+  bundle install --gemfile /home/rprado_ubuntu/blog/Gemfile
+run it
+  sudo service postgresql start
+then
+  sudo -u postgres createuser -s rprado_ubuntu    
+
 # where sqlite lives
 `wsl.localhost\Ubuntu-24.04\home\rprado_ubuntu\blog\storage`
 
@@ -66,7 +80,15 @@ rails tailwindcss:install
 
 `rails g devise:views` copy the login views to your app so you can customize things if you want to
 
-# Default docs \/
+
+# hosting options
+- https://render.com/pricing
+- https://fly.io/pricing/
+- https://hatchbox.io/pricing
+
+create env var `RAILS_MASTER_KEY` with content of `cat config/master.key` (After you ran `bin/rails credentials:edit`)
+
+# Default docs scaffold \/
 
 This README would normally document whatever steps are necessary to get the
 application up and running.

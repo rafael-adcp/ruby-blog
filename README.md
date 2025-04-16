@@ -111,6 +111,9 @@ rails tailwindcss:install
 
 create env var `RAILS_MASTER_KEY` with content of `cat config/master.key` (After you ran `bin/rails credentials:edit`)
 
+# "eslint --fix"
+rubocop -a
+
 # Default docs scaffold \/
 
 This README would normally document whatever steps are necessary to get the

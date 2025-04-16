@@ -56,14 +56,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    postgres:
-      image: postgres:latest
-      env:
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: postgres
-        POSTGRES_DB: ruby-blog-test
-      ports:
-        - 5432:5432
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ruby-blog-test
+        ports:
+          - 5432:5432
 
     # services:
     #  redis:

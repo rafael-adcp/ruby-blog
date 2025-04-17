@@ -25,8 +25,11 @@ Rails.application.routes.draw do
   # get "/blog_posts/:id", to: "blog_posts#show", as: :blog_post
 
   # this handles it all for us
-  resources :blog_posts
-
+  resources :blog_posts do
+    # using module here make it live within our folder (blog_posts/cover_images#destroy)
+    #  instead of the default new controller (cover_image#destroy)
+    resource :cover_image, only: [ :destroy ], module: :blog_posts
+  end
 
 
 

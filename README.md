@@ -198,7 +198,11 @@ class UsersController < ApplicationController
   end
 end
 ```
-
+# routes
+```
+rails routes
+rails routes -g cover_image #filters it with a grep
+```
 
 # Default docs scaffolded by rails cli
 

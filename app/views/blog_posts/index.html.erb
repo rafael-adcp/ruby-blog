@@ -12,6 +12,8 @@
         <%# blog_post_path(blog_post.id) %>
         <%# blog_post_path(blog_post) %>
         <%# blog_post %>
+
+        <%= image_tag blog_post.cover_image if blog_post.cover_image.present?%>
         <h2>
             <% if blog_post.draft?%> <%="DRAFT"%> <%end%>
             <% if blog_post.scheduled?%> <%="SCHEDULED"%> <%end%>
@@ -20,6 +22,7 @@
 
         <%=blog_post.content%>
     </div>
+    <hr/>
 <% end%>
 
 <%= console %>

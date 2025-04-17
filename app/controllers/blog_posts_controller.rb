@@ -55,8 +55,7 @@ class BlogPostsController < ApplicationController
 
   private
   def blog_post_params
-    params.require(:blog_post).permit(:title, :content, :published_at)
-  end
+    params.require(:blog_post).permit(:title, :content, :published_at, :cover_image)  end
 
   def set_blog_post
     if user_signed_in?
